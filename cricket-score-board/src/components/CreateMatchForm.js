@@ -5,8 +5,6 @@ import { useState } from 'react';
 const CreateMatchForm = () => {
   const [team1, setTeam1] = useState('');
   const [team2, setTeam2] = useState('');
-  const [team1Score, setTeam1Score] = useState(0);
-  const [team2Score, setTeam2Score] = useState(0);
   const [currentBatsman, setCurrentBatsman] = useState('');
   const [currentBowler, setCurrentBowler] = useState('');
   const [message, setMessage] = useState('');
@@ -17,15 +15,13 @@ const CreateMatchForm = () => {
     const matchData = {
       team1,
       team2,
-      team1Score,
-      team2Score,
       currentBatsman,
       currentBowler,
       batsmanStats: [],
       bowlerStats: [],
       commentary: [],
     };
-console.log(matchData);
+    console.log(matchData);
 
     try {
       const response = await fetch('/api/match/creatematch', {
@@ -37,15 +33,12 @@ console.log(matchData);
       const data = await response.json();
 
       console.log(data);
-      
 
       if (response.ok) {
         setMessage(`Match created successfully! Match ID: ${data.matchId}`);
         // Reset form after success
         setTeam1('');
         setTeam2('');
-        setTeam1Score(0);
-        setTeam2Score(0);
         setCurrentBatsman('');
         setCurrentBowler('');
       } else {
@@ -60,7 +53,7 @@ console.log(matchData);
   return (
     <form onSubmit={handleCreateMatch} className="max-w-lg mx-auto p-6 bg-white rounded-lg shadow-md">
       <h2 className="text-2xl font-semibold text-center mb-6">Create New Match</h2>
-      
+
       <div className="mb-4">
         <label className="block mb-2 text-sm font-medium text-gray-700">Team 1</label>
         <input
@@ -80,28 +73,6 @@ console.log(matchData);
           onChange={(e) => setTeam2(e.target.value)}
           className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           required
-        />
-      </div>
-
-      <div className="mb-4">
-        <label className="block mb-2 text-sm font-medium text-gray-700">Team 1 Score</label>
-        <input
-          type="number"
-          value={team1Score}
-          onChange={(e) => setTeam1Score(Number(e.target.value))}
-          className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-          min="0"
-        />
-      </div>
-
-      <div className="mb-4">
-        <label className="block mb-2 text-sm font-medium text-gray-700">Team 2 Score</label>
-        <input
-          type="number"
-          value={team2Score}
-          onChange={(e) => setTeam2Score(Number(e.target.value))}
-          className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-          min="0"
         />
       </div>
 

@@ -43,7 +43,7 @@ const MatchList = () => {
         <div
           key={match._id}
           onClick={() => handleMatchClick(match._id)}
-          className="p-4 mb-2 bg-gray-100 rounded shadow cursor-pointer"
+          className="p-4 hover:bg-white mb-2 bg-gray-100 rounded shadow cursor-pointer"
         >
           <h2>{match.team1} vs {match.team2}</h2>
         </div>

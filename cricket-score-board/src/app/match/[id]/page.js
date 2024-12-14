@@ -46,8 +46,6 @@ const MatchPanel = ({ params }) => {
     };
   }, []);
 
-  console.log(match);
-
   const handleUpdateMatch = async () => {
     // Logic for updating the match stats
   };
@@ -61,21 +59,25 @@ const MatchPanel = ({ params }) => {
         {match.team1} vs {match.team2}
       </h1>
 
-      {/* Team Stats Section */}
-      <div className="mb-6 bg-white p-6 shadow-lg rounded-lg">
-        <TeamStats match={match} />
-      </div>
+      {/* Flex Container for Team Stats and Commentary */}
+      <div className="flex flex-col md:flex-row gap-6">
+        {/* Team Stats Section */}
+        <div className="flex-1 bg-white p-6 shadow-lg rounded-lg">
+          <h2 className="text-xl font-semibold text-gray-900 mb-4">Team Stats</h2>
+          <TeamStats match={match} />
+        </div>
 
-      {/* Commentary Section */}
-      <div className="mb-6 bg-white p-6 shadow-lg rounded-lg">
-        <Commentary commentary={match?.commentary || []} />
+        {/* Commentary Section */}
+        <div className="flex-1 bg-white p-6 shadow-lg rounded-lg">
+          <h2 className="text-xl font-semibold text-gray-900 mb-4">Commentary</h2>
+          <Commentary commentary={match?.commentary || []} />
+        </div>
       </div>
-
 
       {/* Optional: Button for updating the match */}
       {/* <button 
         onClick={handleUpdateMatch}
-        className="bg-green-500 text-white px-6 py-3 rounded-lg w-full md:w-auto"
+        className="bg-gray-500 text-white px-6 py-3 rounded-lg w-full md:w-auto mt-6"
       >
         Update Match
       </button> */}
